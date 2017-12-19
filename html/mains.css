@@ -1,0 +1,200 @@
+html {
+    font-size:10pt;
+}
+body {
+    text-align:center;
+}
+
+
+@page {
+    size: A4 portrait;
+    padding:0 0 .5cm;
+    margin:0;
+
+    @top-left {
+        content:"";
+    }
+    @top-right {
+        content:"";
+    }
+    @bottom-left {
+        content:"";
+    }
+    @bottom-right {
+        content:""
+    }
+}
+
+.page {
+    /*    background: red;*/
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width:21cm;
+    text-align:left;
+}
+
+.carte {
+    width: 85.6mm ;
+    height : 53.98mm  ;
+    margin-right:8mm;
+    margin-left:8mm;
+    margin-top:8mm;
+    margin-bottom:8mm;
+    display: inline-block;
+}
+
+
+.header {
+    background: #C2C401;
+}
+
+
+ul.coop {
+    cursor: default;
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+ul.coop li {
+}
+
+.coop {
+    display:flex;
+    align-items:center;
+    align-content:space-between;
+    min-height: 30px;
+}
+
+.numero {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 2rem  ;
+    color : #4E4F35 ;
+    flex: 1 1 30%;
+
+}
+
+.type {
+    flex: 1 1 70%;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 1.4rem ;
+    font-weight: 500;
+    color: #ffffff;
+
+    text-transform: uppercase;
+    letter-spacing: -0.015em;
+    text-align:right;
+    margin-left:auto;
+    margin-right:2rem;
+
+
+}
+
+.content {
+    background: #ffffff;
+    width: 100% ;
+    height: 4cm;
+    display:inline-block ;
+}
+
+img[id^=barcode] {
+    max-width:4cm;
+}
+
+.blocinfo {
+    display:inline-block ;
+    width: 50% ;
+}
+
+.blocphoto {
+    display:inline-block ;
+    margin-left: 2em;
+}
+.blocphoto img {
+    max-height:3cm;
+    height: 4cm;
+}
+
+
+
+ul.nom_prenom {
+    cursor: default;
+    list-style: none;
+    padding-left: 0;
+}
+
+.nom_prenom {
+    background: #ffffff;
+    margin-left: 1em;
+}
+
+.nom {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 0.70rem;
+    font-weight: 600 ;
+    text-transform: uppercase;
+}
+
+.prenom {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500 ;
+    text-transform: uppercase;
+}
+
+.codebarre {
+}
+
+.numerocodebarre {
+}
+
+
+.footerhr {
+    background: #C2C401;
+    height: 10px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer {
+    background: #ffffff;
+    margin-left: auto;
+    width: 90%;
+    margin-right: auto;
+
+}
+
+
+.footer1 {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: .8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.footer2 {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.footer3 {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color : #C2C401;
+}
+
+
+
+/*
+barcode : https://codepen.io/wbarlow/post/creating-a-barcode-generator-with-css
+SCSS -> CSS : https://www.sassmeister.com/
+autre méthode utilisée pour finir : http://lindell.me/JsBarcode/
+*/
