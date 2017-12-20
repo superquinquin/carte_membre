@@ -34,13 +34,25 @@ body {
     text-align:left;
 }
 
+/* Format des cartes de visite : 85 × 54 */ 
 .carte {
-    width: 85.6mm ;
-    height : 53.98mm  ;
+    width: 85mm ;
+    height : 54mm  ;
     margin-right:8mm;
     margin-left:8mm;
     margin-top:8mm;
     margin-bottom:8mm;
+    display: inline-block;
+    border: 1px solid black ;
+}
+
+.carteverso {
+    width: 90.6mm ;
+    height : 55.98mm  ;
+    margin-right:5.5mm;
+    margin-left:5.5mm;
+    margin-top:5.5mm;
+    margin-bottom:5.5mm;
     display: inline-block;
 }
 
@@ -96,12 +108,20 @@ ul.coop li {
 .content {
     background: #ffffff;
     width: 100% ;
-    height: 4cm;
+    height: 38mm;
+    display:inline-block ;
+}
+
+
+.contentverso {
+    background: #ffffff;
+    width: 100% ;
+    height: 100%;
     display:inline-block ;
 }
 
 img[id^=barcode] {
-    max-width:4cm;
+    max-width:38mm;
 }
 
 .blocinfo {
@@ -115,7 +135,7 @@ img[id^=barcode] {
 }
 .blocphoto img {
     max-height:3cm;
-    height: 4cm;
+    height: 38mm;
 }
 
 
@@ -140,21 +160,16 @@ ul.nom_prenom {
 
 .prenom {
     font-family: "Source Sans Pro", sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 500 ;
     text-transform: uppercase;
 }
 
-.codebarre {
-}
-
-.numerocodebarre {
-}
 
 
 .footerhr {
     background: #C2C401;
-    height: 10px;
+    height: 8px;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -168,27 +183,50 @@ ul.nom_prenom {
 
 }
 
+.footerverso {
+    background: #ffffff;
+    margin-left: auto;
+    width: 10%;
+    margin-right: auto;
+}
+
 
 .footer1 {
     font-family: "Source Sans Pro", sans-serif;
-    font-size: .8rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
 }
 
 .footer2 {
     font-family: "Source Sans Pro", sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 400;
     text-transform: uppercase;
 }
 
 .footer3 {
     font-family: "Source Sans Pro", sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 400;
     text-transform: uppercase;
     color : #C2C401;
+}
+
+.footer2verso {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color : blank ; 
+}
+
+.footer3verso {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color : black ;
 }
 
 
