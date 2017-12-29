@@ -37,6 +37,7 @@ body {
     margin-right: auto;
    /* max-width:21cm;*/
     text-align:left;
+	display:block;
 }
 
 /* Format des cartes de visite : 85 × 54 */ 
