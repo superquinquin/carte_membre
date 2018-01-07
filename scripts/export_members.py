@@ -47,7 +47,7 @@ output_dir = "/var/www/html/sqq/data/membres"
 # List members
 try:
     out_members = []
-    members = openerp.ResPartner.browse([], limit=24)
+    members = openerp.ResPartner.browse([('is_worker_member', '=', 'true')])
     for member in members:
         # Check if member has photo uploaded in Odoo
         if (len(member.image) < 100000):
@@ -61,7 +61,8 @@ try:
                 "num": member.barcode_base,
                 "name": name,
                 "surname": surname,
-                "barcode": member.barcode
+                "barcode": member.barcode,
+                "sex": member.sex
                 }
         )
 
