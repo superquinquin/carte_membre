@@ -41,26 +41,31 @@ openerp, uid, tz = init_openerp(
 # Script
 ###############################################################################
 
-output_dir = "/var/www/html/sqq/data/membres"
+#output_dir = "/var/www/html/sqq/data/membres"
+output_dir = "/home/ben/git/sqq/carte_membre/html"
 
 # List members
 try:
     out_members = []
     members = openerp.ResPartner.browse([], limit=10)
     for member in members:
-        (name, surname) = member.name.split(',')
-        out_members.append(
-                {
-                "num": member.barcode_base,
-                "name": name,
-                "surname": surname,
-                "barcode": member.barcode
-                }
-        )
-
-        img_file = open("%s/data/identity/%s.png" % (output_dir, str(member.barcode_base)), 'w')
-        img_file.write(base64.b64decode(member.image))
-        img_file.close()
+	#only coop members 
+	if member.is_member == True :  
+		print "Coop :  %s" % (member.barcode_base  ) 
+		print "Genre :  %s" % (member.gender ) 
+		(name, surname) = member.name.split(',')
+		out_members.append(
+		        {
+		        "num": member.barcode_base,
+		        "name": name,
+		        "surname": surname,
+		        "barcode": member.barcode
+		        }
+		)
+#			"gender": member.gender
+		img_file = open("%s/data/identity/%s.png" % (output_dir, str(member.barcode_base)), 'w')
+		img_file.write(base64.b64decode(member.image))
+		img_file.close()
 
     data_file = open("%s/data/membres.json" % (output_dir), 'w')
     json.dump(out_members, data_file, indent=4)
