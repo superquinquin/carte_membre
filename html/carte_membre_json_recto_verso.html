@@ -42,12 +42,16 @@
           footer.append('<span class="footer3">Coopératif </span>');
           footer.append('<span class="footer2">et </span>');
           footer.append('<span class="footer3">Participatif</span>');
-	  carte.append(footer)
+	  carte.append(footer);
           $('#p').append(carte); 
           JsBarcode("#barcode"+i, membre.barcode, {format: "EAN13", width: 2, heigth: 50, displayValue: true, fontSize: 12});
-          if ((i+1)%10 == 0) {
-                  $('#p').append('<div class="break"></div>');
-          }
+	  if ((i+1)%10 == 0) {
+		  $('#p').append('<div class="break"></div>');
+		  for (rep = 0; rep < 10; rep++) {
+			  $('#p').append('<div class="carteverso"><img id="logo" src="verso.jpg"/></div>');
+		  }
+		  $('#p').append('<div class="break"></div>');
+	  }
 	});
       });
   })();
