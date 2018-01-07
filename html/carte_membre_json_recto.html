@@ -20,7 +20,10 @@
 	  var header = $('<div class="header"></div>');
 	  var coop = $('<ul class="coop"></ul>');
           coop.append('<li class="numero">N°'+membre.num+'</li>');
-          coop.append('<li class="type">Coopérateur</li>');
+	  if (membre.sex == 'm')
+		  coop.append('<li class="type">Coopérateur</li>');
+	  else if (membre.sex == 'f')
+		  coop.append('<li class="type">Coopératrice</li>');
           header.append(coop);
 	  carte.append(header);
 	  var content = $('<div class="content">');
