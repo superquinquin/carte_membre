@@ -41,8 +41,8 @@ openerp, uid, tz = init_openerp(
 # Script
 ###############################################################################
 
-output_dir = "/var/www/html/sqq/data/membres"
-#output_dir = "./"
+#output_dir = "/var/www/html/sqq/data/membres"
+output_dir = "/home/ben/git/sqq/carte_membre/html"
 
 # List members
 try:
