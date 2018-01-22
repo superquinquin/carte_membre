@@ -62,6 +62,7 @@ try:
                 "name": name,
                 "surname": surname,
                 "barcode": member.barcode,
+                "barcode2":member.barcode[:-1],
                 "sex": member.sex
                 }
         )
