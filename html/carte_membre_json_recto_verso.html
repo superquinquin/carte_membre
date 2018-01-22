@@ -49,11 +49,11 @@
           $('#p').append(carte); 
           JsBarcode("#barcode"+i, membre.barcode, {format: "EAN13", width: 2, heigth: 50, displayValue: true, fontSize: 12});
 	  if ((i+1)%10 == 0) {
-		  $('#p').append('<div class="break"></div>');
+		  $('#p').append('</div><div class="page"><div class="break"></div>');
 		  for (rep = 0; rep < 10; rep++) {
 			  $('#p').append('<div class="carteverso"><img id="logo" src="verso.jpg"/></div>');
 		  }
-		  $('#p').append('<div class="break"></div>');
+		  $('#p').append('</div><div class="page"><div class="break"></div>');
 	  }
 	});
       });
