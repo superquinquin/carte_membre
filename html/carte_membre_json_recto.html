@@ -5,6 +5,7 @@
     <title>Membres</title>
     <meta name="generator" content="Stratégie digitale avec les doigts 1.0"/>
 
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <link rel='stylesheet' href='mains.css' type='text/css'/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="JsBarcode.all.min.js"></script>
@@ -35,7 +36,7 @@
 	  blocinfo.append(nom_prenom);
 	  content.append(blocinfo);
           var blocphoto = $('<div class="blocphoto">');
-          blocphoto.append('<p><img src="data/photos/'+membre.num+'.png" height="180"></p>');
+          blocphoto.append('<p><img src="data/photos/'+membre.num+'.jpg" height="180"></p>');
 	  content.append(blocphoto);
 	  carte.append(content);
           carte.append('<div class="footerhr">&nbsp;</div>');
@@ -43,9 +44,9 @@
           footer.append('<span class="footer1">Superquinquin </span>');
           footer.append('<span class="footer2"> - Supermarché </span>');
           footer.append('<span class="footer3">Coopératif </span>');
-          footer.append('<span class="footer2">et </span>');
+          footer.append('<span class="footer4">& </span>');
           footer.append('<span class="footer3">Participatif</span>');
-	  carte.append(footer)
+	  carte.append(footer);
           $('#p').append(carte); 
           JsBarcode("#barcode"+i, membre.barcode, {format: "EAN13", width: 2, heigth: 50, displayValue: true, fontSize: 12});
           if ((i+1)%10 == 0) {
