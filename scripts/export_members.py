@@ -37,8 +37,8 @@ openerp, uid, tz = init_openerp(
 # Configuration
 ###############################################################################
 
-output_dir = "/var/www/html/sqq/data/membres"
-#output_dir = "/home/ben/git/sqq/carte_membre/html"
+#output_dir = "/var/www/html/sqq/data/membres"
+output_dir = "/home/ben/git/sqq/carte_membre/html"
 #output_dir = "./"
 
 ###############################################################################
@@ -68,7 +68,8 @@ try:
         if ',' not in member.name:
             continue
         # Check if member has photo uploaded in Odoo
-        if (len(member.image) > 100000):
+	# la photo du membre 69 fait 65391, on passe à 50000
+        if (len(member.image) > 50000):
             # Add member info to output list
             add_member_to_list(member, members_with_photo)
             # Store member photo
