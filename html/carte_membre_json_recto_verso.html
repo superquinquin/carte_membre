@@ -15,7 +15,7 @@
 <div id="p" class="page"></div>
 <script>
   (function() {
-      $.getJSON('data/membres.json', function(data) {
+      $.getJSON('data/membres_photo.json', function(data) {
         $.each(data, function(i, membre) {
 	  var carte = $('<div class="carte"></div>');
 	  var header = $('<div class="header"></div>');
@@ -48,7 +48,7 @@
           footer.append('<span class="footer3">Participatif</span>');
 	  carte.append(footer);
           $('#p').append(carte); 
-          JsBarcode("#barcode"+i, membre.barcode2, {format: "EAN13", width: 2, heigth: 50, displayValue: true, fontSize: 12});
+          JsBarcode("#barcode"+i, membre.barcode, {format: "EAN13", width: 2, heigth: 50, displayValue: true, fontSize: 12});
 	  if ((i+1)%10 == 0) {
 		  $('#p').append('</div><div class="page"><div class="break"></div>');
 		  for (rep = 0; rep < 10; rep++) {
