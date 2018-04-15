@@ -15,8 +15,8 @@
 <div id="p" class="page"></div>
 <script>
   (function() {
-      $.getJSON('data/membres_nophoto.json', function(data) {
-        $.each(data, function(i, membre) {
+      $.getJSON('data/membres_photo.json', function(data) {
+          $.each(data, function(i, membre) {
 	  var carte = $('<div class="carte"></div>');
 	  var header = $('<div class="header"></div>');
 	  var coop = $('<ul class="coop"></ul>');
@@ -36,7 +36,7 @@
 	  blocinfo.append(nom_prenom);
 	  content.append(blocinfo);
           var blocphoto = $('<div class="blocphoto">');
-          blocphoto.append('<p><img src="nophoto.png" height="180"></p>');
+          blocphoto.append('<p><img src="data/photos/'+membre.num+'.jpg" height="180"></p>');
 	  content.append(blocphoto);
 	  carte.append(content);
           carte.append('<div class="footerhr">&nbsp;</div>');
@@ -49,9 +49,7 @@
 	  carte.append(footer);
           $('#p').append(carte); 
           JsBarcode("#barcode"+i, membre.barcode, {format: "EAN13", width: 2, heigth: 50, displayValue: true, fontSize: 12});
-          if ((i+1)%10 == 0) {
-                  $('#p').append('<div class="break"></div>');
-          }
+	  $('#p').append('</div><div class="page"><div class="break"></div>');
 	});
       });
   })();
