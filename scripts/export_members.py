@@ -104,12 +104,6 @@ def main():
                 img_file.close()
                 logging.debug("Member photo saved to file %s", img_file_name)
 
-		# Mark member as printed if asked to
-        	if args.mark_as_printed:
-        		member.badge_print_date = today
-        		member.badge_to_print = False
-        		logging.debug("Member [%s] marked as printed to %s",
-        			member.name, today)
             else:
                 logging.debug("Found member without photo: %s", member.name)
                 add_member_to_list(member, members_without_photo)
@@ -117,6 +111,12 @@ def main():
             logging.info("Data extracted for [%s]", member.name)
             nb_member = nb_member+1
 
+	# Mark member as printed if asked to
+        if args.mark_as_printed:
+		member.badge_print_date = today
+		member.badge_to_print = False
+		logging.debug("Member [%s] marked as printed to %s",
+			member.name, today)
 
         # Create output json
         save_json("%s/membres_photo.json" % (args.output_dir),
