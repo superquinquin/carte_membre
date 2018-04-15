@@ -25,11 +25,6 @@ body {
     }
 }
 
-@media print {
-	.break{
-	    break-after: page;
-	}
-}
 .page {
     display: inline-block;
     margin-left: auto;
@@ -49,6 +44,7 @@ body {
     margin-bottom:1mm;
     display: inline-block;
     border: 1px solid black ;
+    page-break-after: always;
 }
 
 .carteverso {
