@@ -49,7 +49,6 @@ def add_member_to_list(member, member_list):
             "name": name,
             "surname": surname,
             "barcode": member.barcode,
-            "barcode2":member.barcode[:-1],
             "sex": member.sex
             }
     )
@@ -64,7 +63,12 @@ def main():
     # configure arguments parser
     parser = argparse.ArgumentParser(
             description='Export des membres dont la carte doit être imprimée')
-    parser.add_argument('-v', '--verbose', action='store_true')
+    parser.add_argument('-v', '--verbose', action='store_true',
+            help='activate debug mode')
+    parser.add_argument('-a', '--all', action='store_true',
+            help='export all members instead of only those to print')
+    parser.add_argument('-n', '--no-photo-files', action='store_true',
+            help='do not export photo files')
     parser.add_argument('-m', '--mark-as-printed', action='store_true',
             help="mark members as printed (warning this can't be undone)")
     parser.add_argument('output_dir', metavar='OUTPUT_DIR',
@@ -83,27 +87,29 @@ def main():
     members_without_photo = []
     try:
         # Create output dirs
-        if not os.path.isdir("%s/photos" % (args.output_dir)):
+        if not args.no_photo_files\
+                and not os.path.isdir("%s/photos" % (args.output_dir)):
             os.makedirs("%s/photos" % (args.output_dir))
         # List members
-        members = openerp.ResPartner.browse(
-                [('is_worker_member', '=', 'true'),
-                    ('badge_to_print', '=', 'true')])
-        for member in members:
+        browse_filter = [('is_worker_member', '=', 'true')]
+        if not args.all:
+            browse_filter.append(('badge_to_print', '=', 'true'))
+        for member in openerp.ResPartner.browse(browse_filter):
             if ',' not in member.name:
                 continue
             # Check if member has photo uploaded in Odoo
             if (len(member.image) > 50000):
                 logging.debug("Found member with photo: %s", member.name)
                 add_member_to_list(member, members_with_photo)
-                # Store member photo
-                img_file_name = "%s/photos/%s.jpg" % (args.output_dir,
-                        str(member.barcode_base))
-                img_file = open(img_file_name, 'w')
-                img_file.write(base64.b64decode(member.image))
-                img_file.close()
-                logging.debug("Member photo saved to file %s", img_file_name)
-
+                if not args.no_photo_files:
+                    # Store member photo
+                    img_file_name = "%s/photos/%s.jpg" % (args.output_dir,
+                            str(member.barcode_base))
+                    img_file = open(img_file_name, 'w')
+                    img_file.write(base64.b64decode(member.image))
+                    img_file.close()
+                    logging.debug("Member photo saved to file %s",
+                            img_file_name)
             else:
                 logging.debug("Found member without photo: %s", member.name)
                 add_member_to_list(member, members_without_photo)
