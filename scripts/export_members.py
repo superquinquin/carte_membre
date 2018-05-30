@@ -98,7 +98,7 @@ def main():
             if ',' not in member.name:
                 continue
             # Check if member has photo uploaded in Odoo
-            if (len(member.image) > 50000):
+            if (isinstance(member.image, str) and len(member.image) > 50000):
                 logging.debug("Found member with photo: %s", member.name)
                 add_member_to_list(member, members_with_photo)
                 if not args.no_photo_files:
