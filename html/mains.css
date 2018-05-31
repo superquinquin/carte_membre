@@ -55,6 +55,8 @@ body {
     margin-top:1mm;
     margin-bottom:1mm;
     display: inline-block;
+    page-break-after: always;
+
 }
 
 img[id^=logo] {

@@ -34,10 +34,12 @@
           nom_prenom.append('<li class="nom">'+membre.name+'</li>');
           nom_prenom.append('<li><div><img id="barcode'+i+'"/></div></li>');
 	  blocinfo.append(nom_prenom);
+	  blocinfo.append('</div>');
 	  content.append(blocinfo);
           var blocphoto = $('<div class="blocphoto">');
-          blocphoto.append('<p><img src="data/photos/'+membre.num+'.jpg" height="180"></p>');
+          blocphoto.append('<p><img src="data/photos/'+membre.num+'.jpg" height="180"></p></div>');
 	  content.append(blocphoto);
+	  content.append('</div>');
 	  carte.append(content);
           carte.append('<div class="footerhr">&nbsp;</div>');
           var footer = $('<div class="footer">');
@@ -46,10 +48,11 @@
           footer.append('<span class="footer3">Coopératif </span>');
           footer.append('<span class="footer4">& </span>');
           footer.append('<span class="footer3">Participatif</span>');
+          footer.append('</div>');
 	  carte.append(footer);
           $('#p').append(carte); 
           JsBarcode("#barcode"+i, membre.barcode, {format: "EAN13", width: 2, heigth: 50, displayValue: true, fontSize: 12});
-	  $('#p').append('</div><div class="page"><div class="break"></div>');
+	  $('#p').append('<div class="carteverso"><img id="logo" src="verso.jpg"/></div>');
 	});
       });
   })();
