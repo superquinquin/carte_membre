@@ -117,12 +117,12 @@ def main():
             logging.info("Data extracted for [%s]", member.name)
             nb_member = nb_member+1
 
-	# Mark member as printed if asked to
-        if args.mark_as_printed:
-		member.badge_print_date = today
-		member.badge_to_print = False
-		logging.debug("Member [%s] marked as printed to %s",
-			member.name, today)
+            # Mark member as printed if asked to
+            if args.mark_as_printed:
+                    member.badge_print_date = today
+                    member.badge_to_print = False
+                    logging.debug("Member [%s] marked as printed to %s",
+                            member.name, today)
 
         # Create output json
         save_json("%s/membres_photo.json" % (args.output_dir),
