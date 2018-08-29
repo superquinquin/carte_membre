@@ -69,6 +69,10 @@ img[id^=logo] {
     background: rgba(174,200,27,255);
 }
 
+.header_associe {
+    background: #343739 ;
+}
+
 
 ul.coop {
     cursor: default;
@@ -96,6 +100,18 @@ ul.coop li {
     flex: 1 1 30%;
 
 }
+
+.numero_associe {
+    font-family: "Raleway";
+    font-size: 8px;
+    font-weight: bold;
+    margin-left: 2rem  ;
+    color : rgba(174,200,27,255) ;
+    flex: 1 1 30%;
+
+}
+
+
 
 .type {
     flex: 1 1 70%;
