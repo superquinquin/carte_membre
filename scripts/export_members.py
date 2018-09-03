@@ -49,7 +49,8 @@ def add_member_to_list(member, member_list):
             "name": name,
             "surname": surname,
             "barcode": member.barcode,
-            "sex": member.sex
+            "sex": member.sex,
+            "email": member.email
             }
     )
 
