@@ -14,6 +14,7 @@ import erppeek
 import json
 import base64
 
+
 from cfg_secret_configuration import odoo_configuration_user_prod as user_config
 
 ###############################################################################
@@ -72,8 +73,6 @@ def main():
             help='do not export photo files')
     parser.add_argument('-m', '--mark-as-printed', action='store_true',
             help="mark members as printed (warning this can't be undone)")
-    parser.add_argument('output_dir', metavar='OUTPUT_DIR',
-            help='the output directory')
     args = parser.parse_args()
 
     # configure logger
@@ -83,21 +82,32 @@ def main():
         logging.basicConfig(level=logging.INFO)
 
     today = datetime.date.today().isoformat()
+    output_dir=today
     nb_member = 0
     members_with_photo = []
-    members_without_photo = []
+
+
+    import os, sys
+    if not os.path.isdir("%s" % (output_dir)):
+	    os.makedirs("%s" % (output_dir))
+    
+
+    from shutil import copyfile
+    copyfile("carte_membre.html", "%s/carte_membre.html" %(output_dir))
+    copyfile("JsBarcode.all.min.js", "%s/JsBarcode.all.min.js" %(output_dir))
+    copyfile("mains.css", "%s/mains.css" %(output_dir))
+    copyfile("verso.jpg", "%s/verso.jpg" %(output_dir))
+
     try:
-        # Create output dirs
-        if not args.no_photo_files\
-                and not os.path.isdir("%s/photos" % (args.output_dir)):
-            os.makedirs("%s/photos" % (args.output_dir))
+	logging.info("Date  %s", today)
+
         # List members
-        browse_filter = [('is_associated_people', '=', 'true')]
+        browse_filter = [('is_worker_member', '=', 'true')]
         if not args.all:
             browse_filter.append(('badge_to_print', '=', 'true'))
         for member in openerp.ResPartner.browse(browse_filter):
             if ',' not in member.name:
-                logging.info("ERROR for [%s] (no comma)", member.name)
+            	logging.info("No comma found in Name [%s]", member.name)
                 continue
             # Check if member has photo uploaded in Odoo
             if (isinstance(member.image, str) and len(member.image) > 50000):
@@ -105,16 +115,16 @@ def main():
                 add_member_to_list(member, members_with_photo)
                 if not args.no_photo_files:
                     # Store member photo
-                    img_file_name = "%s/photos/%s.jpg" % (args.output_dir,
+                    img_file_name = "%s/%s.jpg" % (output_dir,
                             str(member.barcode_base))
-                    img_file = open(img_file_name, 'w')
-                    img_file.write(base64.b64decode(member.image))
-                    img_file.close()
-                    logging.debug("Member photo saved to file %s",
-                            img_file_name)
+		    if not os.path.isfile(img_file_name): 
+	                    img_file = open(img_file_name, 'w')
+        	            img_file.write(base64.b64decode(member.image))
+        	            img_file.close()
+        	            logging.info("Member photo saved to file %s",
+        	                    img_file_name)
             else:
                 logging.debug("Found member without photo: %s", member.name)
-                add_member_to_list(member, members_without_photo)
 
             logging.info("Data extracted for [%s]", member.name)
             nb_member = nb_member+1
@@ -127,10 +137,8 @@ def main():
                             member.name, today)
 
         # Create output json
-        save_json("%s/membres_associe_photo.json" % (args.output_dir),
+        save_json("%s/membres.json" % (output_dir),
                 members_with_photo)
-        save_json("%s/membres_associe_nophoto.json" % (args.output_dir),
-                members_without_photo)
         print "Total: %d members exported from Odoo" % (nb_member)
 
 

@@ -15,17 +15,19 @@
 <div id="p" class="page"></div>
 <script>
   (function() {
-      $.getJSON('data/membres_photo.json', function(data) {
+      $.getJSON('membres_associe.json', function(data) {
           $.each(data, function(i, membre) {
 	  var carte = $('<div class="carte"></div>');
-	  var header = $('<div class="header"></div>');
+	  var header = $('<div class="header_associe"></div>');
 	  var coop = $('<ul class="coop"></ul>');
-          coop.append('<li class="numero">N°'+membre.num+'</li>');
+          coop.append('<li class="numero_associe">N°'+membre.num+'</li>');
 	  if (membre.sex == 'm')
-		  coop.append('<li class="type">Coopérateur</li>');
-	  else if (membre.sex == 'f')
-		  coop.append('<li class="type">Coopératrice</li>');
-          header.append(coop);
+		  coop.append('<li class="type">Mangeur</li>');
+      else if (membre.sex == 'f')
+          coop.append('<li class="type">Mangeuse</li>');
+          else
+              coop.append('<li class="type">TOTO</li>');
+      header.append(coop);
 	  carte.append(header);
 	  var content = $('<div class="content">');
           var blocinfo = $('<div class="blocinfo">');
@@ -37,7 +39,7 @@
 	  blocinfo.append('</div>');
 	  content.append(blocinfo);
           var blocphoto = $('<div class="blocphoto">');
-          blocphoto.append('<p><img src="data/photos/'+membre.num+'.jpg" height="180"></p></div>');
+          blocphoto.append('<p><img src="'+membre.num+'.jpg" height="180"></p></div>');
 	  content.append(blocphoto);
 	  content.append('</div>');
 	  carte.append(content);
@@ -52,7 +54,7 @@
 	  carte.append(footer);
           $('#p').append(carte); 
           JsBarcode("#barcode"+i, membre.barcode, {format: "EAN13", width: 2, heigth: 50, displayValue: true, fontSize: 12});
-	  $('#p').append('<div class="carteverso"><img id="logo" src="verso.jpg"/></div>');
+	  $('#p').append('<div class="carteverso"><img id="logo" src="verso_associe.jpg"/></div>');
 	});
       });
   })();
