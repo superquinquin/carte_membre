@@ -97,6 +97,7 @@ def main():
             browse_filter.append(('badge_to_print', '=', 'true'))
         for member in openerp.ResPartner.browse(browse_filter):
             if ',' not in member.name:
+            	logging.info("No comma found in Name [%s]", member.name)
                 continue
             # Check if member has photo uploaded in Odoo
             if (isinstance(member.image, str) and len(member.image) > 50000):
