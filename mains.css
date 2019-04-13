@@ -1,3 +1,13 @@
+/*
+vert : 
+Hexa	: #dddd3a
+RVB 	: 221 221 58
+
+Gris: 
+RVB 	: 47 41 41 
+Hexa 	: #2f2929
+*/
+
 html {
     font-size:10pt;
 }
@@ -66,7 +76,7 @@ img[id^=logo] {
 
 
 .header {
-    background: rgba(174,200,27,255);
+    background: #dddd3a ; /*rgba(174,200,27,255);*/
 }
 
 .header_associe {
@@ -96,7 +106,7 @@ ul.coop li {
     font-size: 8px;
     font-weight: bold;
     margin-left: 2rem  ;
-    color : rgba(48,49,51,255);
+    color : #2f2929 ; /*rgba(48,49,51,255);*/
     flex: 1 1 30%;
 
 }
@@ -106,7 +116,8 @@ ul.coop li {
     font-size: 8px;
     font-weight: bold;
     margin-left: 2rem  ;
-    color : rgba(174,200,27,255) ;
+    color : #dddd3a ; /*rgba(174,200,27,255);*/
+
     flex: 1 1 30%;
 
 }
@@ -182,7 +193,7 @@ ul.nom_prenom {
 
 
 .footerhr {
-    background: rgba(174,200,27,255);
+    background : #dddd3a ; /*rgba(174,200,27,255);*/
     height: 2px;
     width: 90%;
     margin-left: auto;
@@ -204,7 +215,8 @@ ul.nom_prenom {
     font-family: "Raleway";
     font-size: 10px;
     font-weight: bold;
-    color : rgba(48,49,51,255);
+    color : #2f2929 ; /*rgba(48,49,51,255);*/
+
 }
 
 .footer2 {
@@ -212,7 +224,7 @@ ul.nom_prenom {
     font-size: 8px;
     font-weight: bold ;
     text-transform: uppercase;
-    color: rgba(48,49,51,255);
+    color : #2f2929 ; /*rgba(48,49,51,255);*/
 }
 
 .footer3 {
@@ -220,7 +232,7 @@ ul.nom_prenom {
     font-family: "Raleway";
     font-size: 8px;
     font-weight: bold;
-    color: rgba(174,200,27,255);
+    color : #dddd3a ; /*rgba(174,200,27,255);*/
 }
 
 
@@ -229,7 +241,7 @@ ul.nom_prenom {
     text-transform: uppercase;
     font-family: "Raleway";
     font-size: 8px;
-    color: rgba(48,49,51,255);
+    color : #2f2929 ; /*rgba(48,49,51,255);*/
 }
 
 
