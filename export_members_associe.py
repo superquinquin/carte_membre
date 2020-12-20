@@ -105,8 +105,13 @@ def main():
                 logging.info("ERROR for [%s] (no comma)", member.name)
                 continue
             # Check if member has photo uploaded in Odoo
-            if (isinstance(member.image, str) and len(member.image) > 50000):
+#            if ( isinstance(member.image, str) ):
+            if ( isinstance(member.image, str) and ( len(member.image) > 24000 or str(member.barcode_base) == "1141")):
+
+                ##print "-%s;%s" % (len(member.image) , str(member.barcode_base) )
                 logging.debug("Found member with photo: %s", member.name)
+                print "%4d;%s;%s;%s" % (member.barcode_base,member.sex,member.name ,member.email)
+                nb_member = nb_member+1
                 add_member_to_list(member, members_with_photo)
                 if not args.no_photo_files:
                     # Store member photo
@@ -122,8 +127,7 @@ def main():
                 logging.debug("Found member without photo: %s", member.name)
              
             logging.info("Data extracted for [%s]", member.name)
-            nb_member = nb_member+1
-
+            
             # Mark member as printed if asked to
             if args.mark_as_printed:
                     member.badge_print_date = today
