@@ -14,7 +14,6 @@ import erppeek
 import json
 import base64
 
-
 from cfg_secret_configuration import odoo_configuration_user_prod as user_config
 
 ###############################################################################
@@ -99,35 +98,37 @@ def main():
     copyfile("verso.jpg", "%s/verso.jpg" %(output_dir))
 
     try:
-	logging.info("Date  %s", today)
+        logging.info("Date  %s", today)
 
         # List members
         browse_filter = [('is_worker_member', '=', 'true')]
+#        browse_filter = [('name', 'like', 'ALLAR')]
         if not args.all:
             browse_filter.append(('badge_to_print', '=', 'true'))
         for member in openerp.ResPartner.browse(browse_filter):
             if ',' not in member.name:
             	logging.info("No comma found in Name [%s]", member.name)
-                continue
-            # Check if member has photo uploaded in Odoo
-            if (isinstance(member.image, str) and len(member.image) > 50000):
+            	continue
+#               Check if member has photo uploaded in Odoo
+#               if ( isinstance(member.image, str) and ( len(member.image) > 24000 or str(member.barcode_base) == "1141")):
+            if (isinstance(member.image, str) ):
+                #print "%4d;%s;%s;%s" %(member.barcode_base,member.sex,member.name ,member.email)
+                nb_member = nb_member+1
+        
                 logging.debug("Found member with photo: %s", member.name)
                 add_member_to_list(member, members_with_photo)
                 if not args.no_photo_files:
                     # Store member photo
-                    img_file_name = "%s/%s.jpg" % (output_dir,
-                            str(member.barcode_base))
-		    if not os.path.isfile(img_file_name): 
-	                    img_file = open(img_file_name, 'w')
-        	            img_file.write(base64.b64decode(member.image))
-        	            img_file.close()
-        	            logging.info("Member photo saved to file %s",
-        	                    img_file_name)
+                    img_file_name = "%s/%s.jpg" % (output_dir,str(member.barcode_base))
+		        if not os.path.isfile(img_file_name):
+                    img_file = open(img_file_name, 'w')
+                    img_file.write(base64.b64decode(member.image))
+                    img_file.close()
+                    logging.info("Member photo saved to file %s",img_file_name)
             else:
                 logging.debug("Found member without photo: %s", member.name)
 
             logging.info("Data extracted for [%s]", member.name)
-            nb_member = nb_member+1
 
             # Mark member as printed if asked to
             if args.mark_as_printed:
@@ -139,7 +140,7 @@ def main():
         # Create output json
         save_json("%s/membres.json" % (output_dir),
                 members_with_photo)
-        print "Total: %d members exported from Odoo" % (nb_member)
+        print "Total: %d members card to print " % (nb_member)
 
 
     except Exception as e:
