@@ -1,11 +1,8 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
 
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
-
 import os
 import argparse
 import logging
@@ -110,18 +107,18 @@ def main():
 
                 ##print "-%s;%s" % (len(member.image) , str(member.barcode_base) )
                 logging.debug("Found member with photo: %s", member.name)
-                print "%4d;%s;%s;%s" % (member.barcode_base,member.sex,member.name ,member.email)
+                print("%4d;%s;%s;%s" % (member.barcode_base,member.sex,member.name ,member.email))
                 nb_member = nb_member+1
                 add_member_to_list(member, members_with_photo)
                 if not args.no_photo_files:
                     # Store member photo
                     img_file_name = "%s/%s.jpg" % (output_dir,
                             str(member.barcode_base))
-		    if not os.path.isfile(img_file_name): 
-	                    img_file = open(img_file_name, 'w')
-        	            img_file.write(base64.b64decode(member.image))
-        	            img_file.close()
-        	            logging.info("Member photo saved to file %s",
+                    if not os.path.isfile(img_file_name): 
+                        img_file = open(img_file_name, 'wb')
+                        img_file.write(base64.b64decode(member.image))
+                        img_file.close()
+                        logging.info("Member photo saved to file %s",
         	                    img_file_name)
             else:
                 logging.debug("Found member without photo: %s", member.name)
@@ -138,7 +135,7 @@ def main():
         # Create output json
         save_json("%s/membres_associe.json" % (output_dir),
                 members_with_photo)
-        print "Total: %d members exported from Odoo" % (nb_member)
+        print("Total: %d members exported from Odoo" % (nb_member))
 
 
     except Exception as e:
