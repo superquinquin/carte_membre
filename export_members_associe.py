@@ -112,7 +112,7 @@ def main():
 
                 ##print "-%s;%s" % (len(member.image) , str(member.barcode_base) )
                 logging.debug("Found member with photo: %s", member.name)
-                print("%4d;%s;%s;%s" % (member.barcode_base,member.sex,member.name ,member.email))
+                #print("%4d;%s;%s;%s" % (member.barcode_base,member.sex,member.name ,member.email))
                 nb_member = nb_member+1
                 add_member_to_list(member, members_with_photo)
                 if not args.no_photo_files:
