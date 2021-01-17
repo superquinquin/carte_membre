@@ -1,3 +1,21 @@
+@font-face {
+    font-family: Raleway;
+    src: url(Raleway-Light.ttf);
+ }
+ @font-face {
+    font-family: Raleway ExtraBold;
+    src: url(Raleway-ExtraBold.ttf);
+ }
+ @font-face {
+    font-family: Raleway Medium;
+    src: url(Raleway-Medium.ttf);
+ }
+ @font-face {
+    font-family: Raleway;
+    src: url(1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaorCGPrEHJA.woff2);
+ }
+
+
 /*
 vert : 
 Hexa	: #dddd3a
