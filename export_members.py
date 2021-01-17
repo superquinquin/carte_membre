@@ -93,6 +93,11 @@ def main():
     copyfile("JsBarcode.all.min.js", "%s/JsBarcode.all.min.js" %(output_dir))
     copyfile("mains.css", "%s/mains.css" %(output_dir))
     copyfile("verso.jpg", "%s/verso.jpg" %(output_dir))
+    copyfile("Neou-Bold.ttf", "%s/Neou-Bold.ttf" %(output_dir))
+    copyfile("Raleway-ExtraBold.ttf", "%s/Raleway-ExtraBold.ttf" %(output_dir))
+    copyfile("Raleway-Light.ttf", "%s/Raleway-Light.ttf" %(output_dir))
+    copyfile("Raleway-Medium.ttf", "%s/Raleway-Medium.ttf" %(output_dir))
+
 
     try:
         logging.info("Date  %s", today)
