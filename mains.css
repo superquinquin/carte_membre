@@ -17,8 +17,8 @@
 
 
 /*
-vert : 
-Hexa	: #dddd3a
+Jaune : 
+Hexa	: #FCDA3F
 RVB 	: 221 221 58
 
 Gris: 
@@ -94,7 +94,7 @@ img[id^=logo] {
 
 
 .header {
-    background: #dddd3a ; /*rgba(174,200,27,255);*/
+    background: #FCDA3F ; /*rgba(174,200,27,255);*/
 }
 
 .header_associe {
@@ -134,7 +134,7 @@ ul.coop li {
     font-size: 8px;
     font-weight: bold;
     margin-left: 2rem  ;
-    color : #dddd3a ; /*rgba(174,200,27,255);*/
+    color : #FCDA3F ; /*rgba(174,200,27,255);*/
 
     flex: 1 1 30%;
 
@@ -211,7 +211,7 @@ ul.nom_prenom {
 
 
 .footerhr {
-    background : #dddd3a ; /*rgba(174,200,27,255);*/
+    background : #FCDA3F ; /*rgba(174,200,27,255);*/
     height: 2px;
     width: 90%;
     margin-left: auto;
@@ -250,7 +250,7 @@ ul.nom_prenom {
     font-family: "Raleway";
     font-size: 8px;
     font-weight: bold;
-    color : #dddd3a ; /*rgba(174,200,27,255);*/
+    color : #FCDA3F ; /*rgba(174,200,27,255);*/
 }
 
 
