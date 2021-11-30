@@ -46,7 +46,7 @@ def add_member_to_list(member, member_list):
             "name": name,
             "surname": surname,
             "barcode": member.barcode,
-            "sex": member.sex,
+            "sex": member.gender,
             "email": member.email
             }
     )
@@ -104,17 +104,23 @@ def main():
 
         # List members
         browse_filter = [('is_worker_member', '=', 'true')]
-#        browse_filter = [('name', 'like', 'ALLAR')]
+        #browse_filter = [('name', 'like', 'GRASSA')]
         if not args.all:
             browse_filter.append(('badge_to_print', '=', 'true'))
         for member in openerp.ResPartner.browse(browse_filter):
+            if member.cooperative_state == "unsubscribed" :
+            	logging.info("Unubscribed on passe  [%s]", member.name )
+            	continue
+            if not member.barcode :
+            	logging.info("No barcode for  [%s]", member.name )
+            	continue
             if ',' not in member.name:
             	logging.info("No comma found in Name [%s]", member.name)
             	continue
 #               Check if member has photo uploaded in Odoo
 #               if ( isinstance(member.image, str) and ( len(member.image) > 24000 or str(member.barcode_base) == "1141")):
             if (isinstance(member.image, str) ):
-                #print "%4d;%s;%s;%s" %(member.barcode_base,member.sex,member.name ,member.email)
+#                print "%4d;%s;%s;%s" %(member.barcode_base,member.sex,member.name ,member.email)
                 nb_member = nb_member+1
         
                 logging.debug("Found member with photo: %s", member.name)
@@ -131,7 +137,7 @@ def main():
             else:
                 logging.debug("Found member without photo: %s", member.name)
 
-            logging.info("Data extracted for [%s]", member.name)
+            logging.info("Data extracted for [%s, %s] ", member.cooperative_state,member.name)
 
             # Mark member as printed if asked to
             if args.mark_as_printed:
